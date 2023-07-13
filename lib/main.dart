@@ -1,10 +1,15 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:newsapp/modules/business/business_screen.dart';
+import 'package:newsapp/shared/constants/bloc_observer.dart';
 
 import 'layout/news_layout.dart';
 
 void main() {
+
+  Bloc.observer = MyBlocObserver();
+
   runApp(const MyApp());
 }
 
