@@ -8,26 +8,38 @@ import 'package:newsapp/modules/business/business_screen.dart';
 import 'package:newsapp/shared/bloc/cubit.dart';
 import 'package:newsapp/shared/bloc/states.dart';
 import 'package:newsapp/shared/constants/bloc_observer.dart';
+import 'package:newsapp/shared/network/local/cach_helper.dart';
 import 'package:newsapp/shared/network/remote/dio.dart';
 
 import 'layout/news_layout.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
+
+  await CacheHelper.init();
   DioHelper.init();
 
-  runApp(const MyApp());
+  bool? isDark = CacheHelper.getData(key: 'isDark');
+
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+
+  final bool? isDark;
+  MyApp(this.isDark);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:  (context)=> NewsAppCubit()..getBusinessData()..getSportsData()..getScienceData(),
+      create:  (context)=> NewsAppCubit()..getBusinessData()..getSportsData()..getScienceData()..changeAppMode(
+        fromShared: isDark
+      ),
       child: BlocConsumer<NewsAppCubit, NewsAppStates>(
           listener:(context, state){},
           builder: (context, state){
