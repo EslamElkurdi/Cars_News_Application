@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/modules/business/business_screen.dart';
+import 'package:newsapp/modules/search_screen/search_screen.dart';
 import 'package:newsapp/shared/bloc/cubit.dart';
 import 'package:newsapp/shared/bloc/states.dart';
+import 'package:newsapp/shared/components/components.dart';
 import 'package:newsapp/shared/network/remote/dio.dart';
 
 class NewsLayout extends StatelessWidget {
@@ -25,7 +27,7 @@ class NewsLayout extends StatelessWidget {
               IconButton(
                   onPressed: ()
                   {
-
+                      navigateTo(context, SearchScreen());
                   },
                   icon: Icon(
                     Icons.search

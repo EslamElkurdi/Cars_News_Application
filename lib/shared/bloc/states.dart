@@ -1,3 +1,5 @@
+import 'package:newsapp/shared/bloc/cubit.dart';
+
 abstract class NewsAppStates {}
 
 class InitialNewsAppState extends NewsAppStates {}
@@ -37,3 +39,13 @@ class NewsGetScienceErrorState extends NewsAppStates {
 class NewsGetScienceLoadingState extends NewsAppStates {}
 
 class changeModeAppState extends NewsAppStates {}
+
+class NewsGetSearchSuccessState extends NewsAppStates {}
+
+class NewsGetSearchErrorState extends NewsAppStates {
+
+  final String error;
+  NewsGetSearchErrorState(this.error);
+}
+
+class NewsAppGetSearchLoadingState extends NewsAppStates {}
