@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/modules/business/business_screen.dart';
 import 'package:newsapp/shared/bloc/cubit.dart';
 import 'package:newsapp/shared/bloc/states.dart';
+import 'package:newsapp/shared/network/remote/dio.dart';
 
 class NewsLayout extends StatelessWidget {
   const NewsLayout({Key? key}) : super(key: key);
@@ -10,16 +12,16 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=> NewsAppCubit(),
+      create: (context)=> NewsAppCubit()..getBusinessData()..getSportsData()..getScienceData(),
       child: BlocConsumer<NewsAppCubit, NewsAppStates>(
         listener: (context, state){},
         builder: (context, state)
         {
           var cubit = NewsAppCubit.get(context);
-
+          //q=tesla&from=2023-06-13&sortBy=publishedAt&apiKey=c4c9f4ddc89d4c6da21f8337ae191838
           return Scaffold(
             appBar: AppBar(
-              title: const Text("News App"),
+              title: const Text("Cars News App"),
               actions:
               [
                 IconButton(
@@ -42,6 +44,7 @@ class NewsLayout extends StatelessWidget {
               },
               items: cubit.bottomNavBarItems,
             ),
+
           );
         },
       ),

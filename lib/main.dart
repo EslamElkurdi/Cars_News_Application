@@ -1,14 +1,17 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:newsapp/modules/business/business_screen.dart';
 import 'package:newsapp/shared/constants/bloc_observer.dart';
+import 'package:newsapp/shared/network/remote/dio.dart';
 
 import 'layout/news_layout.dart';
 
 void main() {
 
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
 
   runApp(const MyApp());
 }
@@ -46,7 +49,10 @@ class MyApp extends StatelessWidget {
         )
       ),
 
-      home: const NewsLayout(),
+      home: const Directionality(
+          textDirection: TextDirection.ltr,
+          child: NewsLayout(),
+      ),
     );
   }
 }
