@@ -125,4 +125,17 @@ class NewsAppCubit extends Cubit<NewsAppStates>
       emit(NewsGetScienceErrorState(error));
     });
   }
+
+  bool isDark = false;
+
+  void changeAppMode()
+  {
+    if(isDark == false){
+      isDark= true;
+    }else{
+      isDark = false;
+    }
+    print(isDark);
+    emit(changeModeAppState());
+  }
 }

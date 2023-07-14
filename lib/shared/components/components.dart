@@ -60,7 +60,7 @@ Widget myDivider() => Padding(
   ),
 );
 
-Widget build_Article_Item(article) => Padding(
+Widget build_Article_Item(article, context) => Padding(
   padding: EdgeInsets.all(20),
   child: Row(
     children: [
@@ -86,10 +86,7 @@ Widget build_Article_Item(article) => Padding(
               children: [
                 Text(
                   '${article['title']}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -108,10 +105,10 @@ Widget build_Article_Item(article) => Padding(
 );
 
 
-Widget articleBuilder(article)=>ConditionalBuilder(
+Widget articleBuilder(article, context)=>ConditionalBuilder(
     condition: article.length > 0,
     builder: (context) => ListView.separated(
-      itemBuilder: (context, index)=> build_Article_Item(article[index]),
+      itemBuilder: (context, index)=> build_Article_Item(article[index],context),
       separatorBuilder: (context, index)=> myDivider(),
       itemCount: article.length,
     ),

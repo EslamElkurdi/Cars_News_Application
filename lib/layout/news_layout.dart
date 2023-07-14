@@ -11,43 +11,49 @@ class NewsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context)=> NewsAppCubit()..getBusinessData()..getSportsData()..getScienceData(),
-      child: BlocConsumer<NewsAppCubit, NewsAppStates>(
-        listener: (context, state){},
-        builder: (context, state)
-        {
-          var cubit = NewsAppCubit.get(context);
-          //q=tesla&from=2023-06-13&sortBy=publishedAt&apiKey=c4c9f4ddc89d4c6da21f8337ae191838
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text("Cars News App"),
-              actions:
-              [
-                IconButton(
-                    onPressed: ()
-                    {
+    return BlocConsumer<NewsAppCubit, NewsAppStates>(
+      listener: (context, state){},
+      builder: (context, state)
+      {
+        var cubit = NewsAppCubit.get(context);
+        //q=tesla&from=2023-06-13&sortBy=publishedAt&apiKey=c4c9f4ddc89d4c6da21f8337ae191838
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Cars News App"),
+            actions:
+            [
+              IconButton(
+                  onPressed: ()
+                  {
 
-                    },
-                    icon: Icon(
-                      Icons.search
-                    )
-                )
-              ],
-            ),
-            body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
-              onTap: (index)
-              {
-                cubit.changeBottomNavBar(index);
-              },
-              items: cubit.bottomNavBarItems,
-            ),
+                  },
+                  icon: Icon(
+                    Icons.search
+                  )
+              ),
+              IconButton(
+                  onPressed: ()
+                  {
+                      NewsAppCubit.get(context).changeAppMode();
+                  },
+                  icon: Icon(
+                      Icons.dark_mode_outlined
+                  )
+              )
+            ],
+          ),
+          body: cubit.screens[cubit.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: cubit.currentIndex,
+            onTap: (index)
+            {
+              cubit.changeBottomNavBar(index);
+            },
+            items: cubit.bottomNavBarItems,
+          ),
 
-          );
-        },
-      ),
+        );
+      },
     );
   }
 }
