@@ -155,14 +155,14 @@ Widget build_Article_Item(article, context) => InkWell(
 );
 
 
-Widget articleBuilder(article, context)=>ConditionalBuilder(
+Widget articleBuilder(article, context, {isSearch = false})=>ConditionalBuilder(
     condition: article.length > 0,
     builder: (context) => ListView.separated(
       itemBuilder: (context, index)=> build_Article_Item(article[index],context),
       separatorBuilder: (context, index)=> myDivider(),
       itemCount: article.length,
     ),
-    fallback: (context)=> Center(child: CircularProgressIndicator(),)
+    fallback: (context)=> isSearch ? Container() : Center(child: CircularProgressIndicator(),)
 );
 
 void navigateTo(context, widget) => Navigator.push(
