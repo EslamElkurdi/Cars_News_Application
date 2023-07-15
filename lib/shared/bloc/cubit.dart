@@ -65,7 +65,7 @@ class NewsAppCubit extends Cubit<NewsAppStates>
         url: 'v2/everything',
         query: {
           'q':'tesla',
-          'from':'2023-06-13',
+          'from':'2023-06-14',
           'sortBy':'publishedAt',
           'apiKey':'c4c9f4ddc89d4c6da21f8337ae191838',
         }
@@ -89,7 +89,7 @@ class NewsAppCubit extends Cubit<NewsAppStates>
         url: 'v2/everything',
         query: {
           'q':'toyota',
-          'from':'2023-06-13',
+          'from':'2023-06-14',
           'sortBy':'publishedAt',
           'apiKey':'c4c9f4ddc89d4c6da21f8337ae191838',
         }
@@ -113,7 +113,7 @@ class NewsAppCubit extends Cubit<NewsAppStates>
         url: 'v2/everything',
         query: {
           'q':'bmw',
-          'from':'2023-06-13',
+          'from':'2023-06-14',
           'sortBy':'publishedAt',
           'apiKey':'c4c9f4ddc89d4c6da21f8337ae191838',
         }
@@ -159,7 +159,7 @@ class NewsAppCubit extends Cubit<NewsAppStates>
           url: 'v2/everything',
           query: {
             'q':'$value',
-            'from':'2023-06-13',
+            'from':'2023-06-14',
             'sortBy':'publishedAt',
             'apiKey':'c4c9f4ddc89d4c6da21f8337ae191838',
           }
